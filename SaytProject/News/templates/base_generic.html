@@ -12,7 +12,6 @@
     {% load static %}
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <link rel="stylesheet" href="../static/boots/css/bootstrap.css">
-    {% endblock %}
     {% block head %}
         <div class="nazv">
             <img src="{% static 'images/logotip.png' %}" style="height:150px;"  align="absmiddle">
@@ -74,7 +73,26 @@
             </ul>
         </li>
     </div>
-
+    {% block content %}{% endblock %}
+      
+    {% block pagination %}
+      {% if is_paginated %}
+          <div class="pagination">
+              <span class="page-links">
+                  {% if page_obj.has_previous %}
+                      <a href="{{request.path}}?page={{page_obj.previous_page_number }}">Предыдущая</a>
+                  {% endif %}
+                  <span class="page-current">
+                      Страница {{ page_obj.number }} из
+                          {{ page_obj.paginator.num_pages }}.
+                  </span>
+                  {% if page_obj.has_next %}
+                      <a href="{{ request.path }}?page={{page_obj.next_page_number }}">Следующая</a>
+                  {% endif %}
+              </span>
+          </div>
+      {% endif %}
+    {% endblock %}
 
 
     <footer>
