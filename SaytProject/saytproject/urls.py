@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path
-from catalog import views
+from News import views
 
 urlpatterns = [
     path('', views.index, name='index'),
