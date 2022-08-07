@@ -14,7 +14,7 @@ from django.views import generic
 
 def index(request):
     num_document = Document.objects.all().count()
-    num_novosti = Novosti.objects.all().filter(status__exact=2).count()
+    num_novosti = Novosti.objects.all().count()
 
     return render(request,"index.html",context={
     'num_document':num_document,
@@ -26,5 +26,5 @@ class BookListView(generic.ListView):
     model = Document
     paginate_by = 5
 
-class BookDetailView(generic.detailViews):
+class BookDetailView(generic.DetailView):
     model = Document 
